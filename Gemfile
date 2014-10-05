@@ -9,7 +9,10 @@ gem 'rails', '4.1.6'
 group :development, :test do
 	gem 'sqlite3', '1.3.9'
 	gem 'rspec-rails', '3.1.0'
-	gem 'guard-rspec'
+	gem 'guard-rspec', '4.3.1'
+	gem 'spork-rails', '4.0.0'
+  	gem 'guard-spork', '1.5.1'
+  	gem 'childprocess', '0.5.5'
 	gem 'spring', '1.1.3'
 end
 
