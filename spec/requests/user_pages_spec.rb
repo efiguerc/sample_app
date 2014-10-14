@@ -68,40 +68,18 @@ describe "User pages" do
       end
 
       describe "invalid Email" do
-        it "display an error" do
-          fill_in "Email", with: 'user@foo,com'
-          click_button submit
-          should have_content("Email is invalid")
-        end
 
-        it "display an error" do
-          fill_in "Email", with: 'user_at_foo.org'
-          click_button submit
-          should have_content("Email is invalid")
-        end
+        addresses = %w[user@foo,com user_at_foo.org example.user@foo.
+                     foo@bar_baz.com foo@bar+baz.com foo@bar..com]
 
-        it "display an error" do
-          fill_in "Email", with: 'example.user@foo.'
-          click_button submit
-          should have_content("Email is invalid")
-        end
+        addresses.each do |invalid_address|
 
-        it "display an error" do
-          fill_in "Email", with: 'foo@bar_baz.com'
-          click_button submit
-          should have_content("Email is invalid")
-        end
-
-        it "display an error" do
-          fill_in "Email", with: 'foo@bar+baz.com'
-          click_button submit
-          should have_content("Email is invalid")
-        end
-
-        it "display an error" do
-          fill_in "Email", with: 'foo@bar..com'
-          click_button submit
-          should have_content("Email is invalid")
+          it ' should have content "Email is invalid"' do
+            fill_in "Email", with: invalid_address
+            click_button submit
+            should have_content("Email is invalid")
+          end
+          
         end
       end
     end
