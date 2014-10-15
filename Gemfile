@@ -13,6 +13,7 @@ gem 'sprockets', '2.11.0'
 group :development, :test do
 	gem 'sqlite3', '1.3.9'
 	gem 'rspec-rails', '3.1.0'
+	gem 'rspec-its', '1.0.1'
 	gem 'guard-rspec', '4.3.1'
 	# gem 'spork-rails', '4.0.0'
   	# gem 'guard-spork', '1.5.1'
@@ -27,6 +28,8 @@ group :test do
 	gem 'capybara', '2.4.3'
 	gem 'libnotify', '0.8.4'
 	gem 'factory_girl_rails', '4.4.1'
+	gem 'cucumber-rails', '1.4.2', :require => false
+  	gem 'database_cleaner', '1.3.0'
 end
 
 gem 'sass-rails', '4.0.3'
