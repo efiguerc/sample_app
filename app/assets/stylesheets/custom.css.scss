@@ -168,6 +168,7 @@ input {
   height: auto !important;
 }
 
+/* 
 #error_explanation {
   color: #f00;
   ul {
@@ -180,9 +181,9 @@ input {
   @extend .control-group;
   @extend .error;
 }
+*/
 
 
-/*
 #error_explanation {
   color: red;
   ul {
@@ -197,7 +198,7 @@ input {
     color: $state-danger-text;
   }
 }
-*/
+
 
 /* Users index */
 
