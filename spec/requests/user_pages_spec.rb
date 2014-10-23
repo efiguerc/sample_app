@@ -239,6 +239,26 @@ describe "User pages" do
 
   describe "user_home" do
 
+    describe "sidebar micropost" do
+      let(:user) { FactoryGirl.create(:user, email: 'example-6@railstutorial.org',
+                                             password: "password",
+                                             password_confirmation: "password") }
+      before do
+        sign_in user
+        visit root_path
+      end
+
+      it "should pluralize micropost" do
+        expect(page).to have_content("0 microposts")
+        fill_in "Compose new micropost...", with: "Foo Bar"
+        click_button "Post"
+        expect(page).to have_content("1 micropost")
+        fill_in "Compose new micropost...", with: "Foo Bar"
+        click_button "Post"
+        expect(page).to have_content("2 microposts")
+      end
+    end
+
     describe "pagination" do
       let(:user) { FactoryGirl.create(:user) }
 
