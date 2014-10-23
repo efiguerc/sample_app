@@ -238,11 +238,6 @@ describe "User pages" do
   end
 
   describe "user_home" do
-    /# let(:user) { FactoryGirl.create(:user) }
-    before(:each) do
-      sign_in user
-      visit root_path
-    end #/
 
     describe "pagination" do
       let(:user) { FactoryGirl.create(:user) }
@@ -264,6 +259,20 @@ describe "User pages" do
         user.microposts.paginate(page: 1).each do |post|
           expect(page).to have_selector('li', text: post.content)
         end
+      end
+    end
+
+    describe "in another user page" do
+      describe  "delete links" do
+        let(:user) { FactoryGirl.create(:user) }
+        let(:another_user) { FactoryGirl.create(:user) }
+
+        before do
+          sign_in user
+          visit user_path(another_user)
+        end
+
+        it { should_not have_link('delete') }
       end
     end
   end
