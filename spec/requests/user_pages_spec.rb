@@ -236,4 +236,35 @@ describe "User pages" do
       specify { expect(user.reload).not_to be_admin }
     end
   end
+
+  describe "user_home" do
+    /# let(:user) { FactoryGirl.create(:user) }
+    before(:each) do
+      sign_in user
+      visit root_path
+    end #/
+
+    describe "pagination" do
+      let(:user) { FactoryGirl.create(:user) }
+
+      before(:all) do
+        user1 = FactoryGirl.create(:user)
+        50.times { FactoryGirl.create(:micropost, user: user1, content: "Foo") }
+        sign_in user1
+        visit root_path
+      end
+      after(:all) do
+        user1 = FactoryGirl.create(:user)
+        user1.microposts.delete_all
+      end
+
+      it { should have_selector('div.pagination') }
+
+      it "should list each post" do
+        user.microposts.paginate(page: 1).each do |post|
+          expect(page).to have_selector('li', text: post.content)
+        end
+      end
+    end
+  end
 end
